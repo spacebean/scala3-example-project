@@ -9,7 +9,7 @@ object PatternMatching:
         s.length % 2 == 0
 
   object productPattern:
-    class Person(name: String, age: Int)extends Product :
+    class Person(name: String, age: Int) extends Product:
       // if we not define that, it will give compile error.
       // we change the order
       def _1 = age
