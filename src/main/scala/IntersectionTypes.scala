@@ -16,7 +16,7 @@ object IntersectionTypes:
   type P = Y & X
   type PP = X & Y
 
-  final case class Point(x: Double, y: Double)extends X with Y :
+  final case class Point(x: Double, y: Double) extends X with Y :
     override def tpe: X & Y = ???
 
   def test(): Unit =
