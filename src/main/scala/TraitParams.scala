@@ -1,10 +1,12 @@
 /**
-  * Trait Parameters: https://dotty.epfl.ch/docs/reference/other-new-features/trait-parameters.html
-  */
+ * Trait Parameters: https://dotty.epfl.ch/docs/reference/other-new-features/trait-parameters.html
+ */
 object TraitParams:
 
   trait Base(val msg: String)
+
   class A extends Base("Hello")
+
   class B extends Base("Dotty!")
 
   // Union types only exist in Scala 3, so there's no chance that this will accidentally be compiled with Scala 2
@@ -16,4 +18,3 @@ object TraitParams:
     // Sanity check the classpath: this won't run if the Scala 3 jar is not present.
     val x: Int => Int = identity
     x(1)
-

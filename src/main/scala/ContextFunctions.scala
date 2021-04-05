@@ -2,10 +2,10 @@ import scala.concurrent.{ExecutionContext, Future}
 import scala.util.Try
 
 /**
-  * Context Functions:
-  *  - https://dotty.epfl.ch/docs/reference/contextual/context-functions.html
-  *  - https://www.scala-lang.org/blog/2016/12/07/implicit-function-types.html
-  */
+ * Context Functions:
+ *  - https://dotty.epfl.ch/docs/reference/contextual/context-functions.html
+ *  - https://www.scala-lang.org/blog/2016/12/07/implicit-function-types.html
+ */
 object ContextFunctions:
 
   object context:
@@ -27,9 +27,9 @@ object ContextFunctions:
       val tryB = parser.parse(y)
 
       for
-        a <- tryA
-        b <- tryB
-      yield a + b
+      a <- tryA
+      b <- tryB
+        yield a + b
 
   def test(): Unit =
     import ExecutionContext.Implicits.global
@@ -38,4 +38,3 @@ object ContextFunctions:
 
     println(parse.sumStrings("3", "4"))
     println(parse.sumStrings("3", "a"))
-

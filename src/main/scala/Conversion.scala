@@ -1,11 +1,12 @@
 import scala.language.implicitConversions
 
 /**
-  * Conversions: https://dotty.epfl.ch/docs/reference/contextual/conversions.html
-  */
+ * Conversions: https://dotty.epfl.ch/docs/reference/contextual/conversions.html
+ */
 object Conversion:
 
   case class IntWrapper(a: Int) extends AnyVal
+
   case class DoubleWrapper(b: Double) extends AnyVal
 
   def convert[T, U](x: T)(using converter: Conversion[T, U]): U = converter(x)
@@ -15,7 +16,7 @@ object Conversion:
   }
   // Or:
   // given IntWrapperToDoubleWrapper: Conversion[IntWrapper, DoubleWrapper] = 
-  //   (i: IntWrapper) => DoubleWrapper(i.a.toDouble)
+  // (i: IntWrapper) => DoubleWrapper(i.a.toDouble)
 
   def useConversion(using f: Conversion[IntWrapper, DoubleWrapper]) =
     val y: IntWrapper = IntWrapper(4)

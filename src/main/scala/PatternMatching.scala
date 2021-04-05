@@ -1,6 +1,6 @@
 /**
-  * Pattern Matching: https://dotty.epfl.ch/docs/reference/changed-features/pattern-matching.html
-  */
+ * Pattern Matching: https://dotty.epfl.ch/docs/reference/changed-features/pattern-matching.html
+ */
 object PatternMatching:
 
   object booleanPattern:
@@ -11,15 +11,18 @@ object PatternMatching:
 
   object productPattern:
 
-    class Person(name: String, age: Int) extends Product:
+    class Person(name: String, age: Int)extends Product :
       // if we not define that, it will give compile error.
       // we change the order
       def _1 = age
+
       def _2 = name
 
       // Not used by pattern matching: Product is only used as a marker trait.
       def canEqual(that: Any): Boolean = ???
+
       def productArity: Int = ???
+
       def productElement(n: Int): Any = ???
 
     object Person:
@@ -40,6 +43,7 @@ object PatternMatching:
 
     class Name(val name: String):
       def get: String = name
+
       def isEmpty = name.isEmpty
 
     object Name:
@@ -50,34 +54,34 @@ object PatternMatching:
     import booleanPattern.*
 
     "even" match
-      case s @ Even() => println(s"$s has an even number of characters")
-      case s          => println(s"$s has an odd number of characters")
+      case s@Even() => println(s"$s has an even number of characters")
+      case s => println(s"$s has an odd number of characters")
 
     // https://dotty.epfl.ch/docs/reference/changed-features/vararg-splices.html
-    def containsConsecutive(list: List[Int]): Boolean = list match 
-      case List(a, b, xs*)   => a == b || containsConsecutive(b :: xs.toList)
+    def containsConsecutive(list: List[Int]): Boolean = list match
+      case List(a, b, xs*) => a == b || containsConsecutive(b :: xs.toList)
       case Nil | List(_, _*) => false
 
     println(containsConsecutive(List(1, 2, 3, 4, 5)))
     println(containsConsecutive(List(1, 2, 3, 3, 5)))
 
     import productPattern.*
-    ("john", 42) match 
+    ("john", 42) match
       case Person(n, a) => println(s"name: $n, age: $a")
 
     import seqPattern.*
 
-    def greet(fullName: String) = fullName match 
+    def greet(fullName: String) = fullName match
       case Names(lastName, firstName, _*) => "Good morning, " + firstName + " " + lastName + "!"
-      case _                              => "Welcome! Please make sure to fill in your name!"
-    
+      case _ => "Welcome! Please make sure to fill in your name!"
+
     println(greet("Alan Turing"))
     println(greet("john"))
     println(greet("Wolfgang Amadeus Mozart"))
 
     import namePattern.*
-    "alice" match 
+    "alice" match
       case Name(n) => println(s"name is $n")
-      case _       => println("empty name")
+      case _ => println("empty name")
 
 end PatternMatching

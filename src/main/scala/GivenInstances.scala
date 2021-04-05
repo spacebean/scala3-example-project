@@ -1,8 +1,8 @@
 import scala.util.{Success, Try}
 
 /**
-  * Implied Instances: https://dotty.epfl.ch/docs/reference/contextual/givens.html
-  */
+ * Implied Instances: https://dotty.epfl.ch/docs/reference/contextual/givens.html
+ */
 object GivenInstances:
 
   sealed trait StringParser[A]:
@@ -17,6 +17,7 @@ object GivenInstances:
     }
 
     given stringParser: StringParser[String] = baseParser(Success(_))
+
     given intParser: StringParser[Int] = baseParser(s ⇒ Try(s.toInt))
 
     given optionParser[A](using parser: => StringParser[A]): StringParser[Option[A]] = new StringParser[Option[A]] {
@@ -30,4 +31,3 @@ object GivenInstances:
     println(summon[StringParser[Option[Int]]].parse(""))
     println(summon[StringParser[Option[Int]]].parse("21a"))
     println(summon[StringParser[Option[Int]]](using StringParser.optionParser[Int]).parse("42"))
-
