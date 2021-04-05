@@ -4,13 +4,11 @@
 object PatternMatching:
 
   object booleanPattern:
-
     object Even:
-      def unapply(s: String): Boolean = s.length % 2 == 0
-
+      def unapply(s: String): Boolean =
+        s.length % 2 == 0
 
   object productPattern:
-
     class Person(name: String, age: Int)extends Product :
       // if we not define that, it will give compile error.
       // we change the order
@@ -28,6 +26,7 @@ object PatternMatching:
     object Person:
       def unapply(a: (String, Int)): Person = Person(a._1, a._2)
 
+  end productPattern
 
   object seqPattern:
 
@@ -38,6 +37,7 @@ object PatternMatching:
         if names.size < 2 then None
         else Some(names.last :: names.head :: names.drop(1).dropRight(1).toList)
 
+  end seqPattern
 
   object namePattern:
 
@@ -49,6 +49,7 @@ object PatternMatching:
     object Name:
       def unapply(s: String): Name = Name(s)
 
+  end namePattern
 
   def test(): Unit =
     import booleanPattern.*
