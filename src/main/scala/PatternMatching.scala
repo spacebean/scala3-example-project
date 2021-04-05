@@ -59,6 +59,7 @@ object PatternMatching:
       case s => println(s"$s has an odd number of characters")
 
     // https://dotty.epfl.ch/docs/reference/changed-features/vararg-splices.html
+    @annotation.tailrec
     def containsConsecutive(list: List[Int]): Boolean = list match
       case List(a, b, xs*) => a == b || containsConsecutive(b :: xs.toList)
       case Nil | List(_, _*) => false
