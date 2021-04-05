@@ -7,7 +7,6 @@ object EnumTypes:
     case Cons(h: A, t: ListEnum[A])
     case Empty
 
-
   enum Planet(mass: Double, radius: Double):
     private final val G = 6.67300E-11
 
