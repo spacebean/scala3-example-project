@@ -18,11 +18,13 @@ object UnionTypes:
     case Cons(h: A, t: List[A]) extends List[A]
 
   private def safeDivide(a: Double, b: Double): DivisionResult =
-    if b == 0 then DivisionByZero("DivisionByZeroException") else Success(a / b)
+    if b == 0 then DivisionByZero("DivisionByZeroException")
+    else Success(a / b)
 
-  private def either(division: Division) = division match
-    case DivisionByZero(m) => Left(m)
-    case Success(d) => Right(d)
+  private def either(division: Division) =
+    division match
+      case DivisionByZero(m) => Left(m)
+      case Success(d) => Right(d)
 
   def test(): Unit =
     val divisionResultSuccess: DivisionResult = safeDivide(4, 2)

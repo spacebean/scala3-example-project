@@ -24,7 +24,8 @@ object PatternMatching:
       def productElement(n: Int): Any = ???
 
     object Person:
-      def unapply(a: (String, Int)): Person = Person(a._1, a._2)
+      def unapply(a: (String, Int)): Person =
+        Person(a._1, a._2)
 
   end productPattern
 
@@ -42,12 +43,15 @@ object PatternMatching:
   object namePattern:
 
     class Name(val name: String):
-      def get: String = name
+      def get: String =
+        name
 
-      def isEmpty = name.isEmpty
+      def isEmpty =
+        name.isEmpty
 
     object Name:
-      def unapply(s: String): Name = Name(s)
+      def unapply(s: String): Name =
+        Name(s)
 
   end namePattern
 
@@ -60,9 +64,10 @@ object PatternMatching:
 
     // https://dotty.epfl.ch/docs/reference/changed-features/vararg-splices.html
     @annotation.tailrec
-    def containsConsecutive(list: List[Int]): Boolean = list match
-      case List(a, b, xs*) => a == b || containsConsecutive(b :: xs.toList)
-      case Nil | List(_, _*) => false
+    def containsConsecutive(list: List[Int]): Boolean =
+      list match
+        case List(a, b, xs*) => a == b || containsConsecutive(b :: xs.toList)
+        case Nil | List(_, _*) => false
 
     println(containsConsecutive(List(1, 2, 3, 4, 5)))
     println(containsConsecutive(List(1, 2, 3, 3, 5)))
@@ -73,9 +78,10 @@ object PatternMatching:
 
     import seqPattern.*
 
-    def greet(fullName: String) = fullName match
-      case Names(lastName, firstName, _*) => "Good morning, " + firstName + " " + lastName + "!"
-      case _ => "Welcome! Please make sure to fill in your name!"
+    def greet(fullName: String) =
+      fullName match
+        case Names(lastName, firstName, _*) => "Good morning, " + firstName + " " + lastName + "!"
+        case _ => "Welcome! Please make sure to fill in your name!"
 
     println(greet("Alan Turing"))
     println(greet("john"))
