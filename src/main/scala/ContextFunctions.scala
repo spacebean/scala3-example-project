@@ -29,13 +29,14 @@ object ContextFunctions:
       val tryB = parser.parse(y)
 
       for
-      a <- tryA
-      b <- tryB
-        yield a + b
+        a <- tryA
+        b <- tryB
+      yield a + b
     end sumStrings
 
   def test(): Unit =
     import ExecutionContext.Implicits.global
+
     context.asyncSum(3, 4).foreach(println)
     context.asyncMult(3, 4).foreach(println)
 

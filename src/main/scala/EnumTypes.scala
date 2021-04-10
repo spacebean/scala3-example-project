@@ -2,7 +2,6 @@
  * Enum Types: https://dotty.epfl.ch/docs/reference/enums/adts.html
  */
 object EnumTypes:
-
   enum ListEnum[+A]:
     case Cons(h: A, t: ListEnum[A])
     case Empty

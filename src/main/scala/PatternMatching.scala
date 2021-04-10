@@ -2,7 +2,6 @@
  * Pattern Matching: https://dotty.epfl.ch/docs/reference/changed-features/pattern-matching.html
  */
 object PatternMatching:
-
   object booleanPattern:
     object Even:
       def unapply(s: String): Boolean =
